@@ -18,7 +18,7 @@ public class ProxyFactory {
     public static Map<String,List<URL>> map = new HashMap<>();//本地服务列表
 
     @SuppressWarnings("unchecked")
-    public static <T> T getProxy(final Class interfaceClass,String address,String confer) {
+    public static <T> T getProxy(final Class interfaceClass,String address,Protocol protocol) {
         return (T) Proxy.newProxyInstance(interfaceClass.getClassLoader(), new Class[]{interfaceClass}, new InvocationHandler() {
             @Override
             public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
@@ -36,8 +36,6 @@ public class ProxyFactory {
 
                     URL url = LoadBalance.random(map.get(interfaceClass.getName()));
                     System.out.println("------" + map.get(interfaceClass.getName()).size());
-                    ExtensionLoader<Protocol> load = SpiBs.load(Protocol.class);
-                    Protocol protocol = load.getExtension(confer);
                     String result = protocol.send(url, invocation);
                     return result + url.getPort();
                 }catch (Exception e) {
