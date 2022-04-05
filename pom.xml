@@ -7,6 +7,7 @@
     <groupId>com.scut</groupId>
     <artifactId>Lys-RPC</artifactId>
     <version>1.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
     <modules>
         <module>RPC-Framework</module>
         <module>common-interface</module>
@@ -31,13 +32,6 @@
         <zookeeper.version>3.5.7</zookeeper.version>
     </properties>
 
-    <dependencies>
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <scope>test</scope>
-        </dependency>
-    </dependencies>
 
     <dependencyManagement>
         <dependencies>

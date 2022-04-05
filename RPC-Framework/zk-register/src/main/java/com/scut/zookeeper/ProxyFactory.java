@@ -3,7 +3,6 @@ package com.scut.zookeeper;
 import com.scut.spi.annotation.api.Invocation;
 import com.scut.spi.annotation.api.LoadBalance;
 import com.scut.spi.annotation.api.URL;
-import com.scut.dubbo.protocol.ProtocolFactory;
 import com.scut.protocol.Protocol;
 import com.scut.spi.api.impl.ExtensionLoader;
 import com.scut.spi.bs.SpiBs;
@@ -42,6 +41,7 @@ public class ProxyFactory {
                     String result = protocol.send(url, invocation);
                     return result + url.getPort();
                 }catch (Exception e) {
+                    e.printStackTrace();
                     return "不好意思，执行出错了";
                 }
             }

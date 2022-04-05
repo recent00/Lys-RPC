@@ -16,11 +16,11 @@ public class Provider {
         LocalRegister.regist(HelloService.class.getName(), HelloServiceImpl.class);
 
         //注册中心注册
-        URL url = new URL("localhost",8082);
+        URL url = new URL("localhost",8081);
         Register.register(HelloService.class.getName(),url);
         //启动tomcat/netty
         ExtensionLoader<Protocol> load = SpiBs.load(Protocol.class);
-        Protocol protocol = load.getExtension("http");
+        Protocol protocol = load.getExtension("dubbo");
         protocol.start(url);
     }
 }
